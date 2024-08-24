@@ -1,0 +1,113 @@
+2024-08-25 01:28:45,688 - app - ERROR - Request finalizing failed with an error while handling an error
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 607, in _connect
+    for res in socket.getaddrinfo(
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
+    self._upsert_session(app.permanent_session_lifetime, session, store_id)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+    self.client.set(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
+    connection.connect()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error -2 connecting to redis:6379. Name or service not known.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 607, in _connect
+    for res in socket.getaddrinfo(
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
+    self._upsert_session(app.permanent_session_lifetime, session, store_id)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+    self.client.set(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
+    connection.connect()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error -2 connecting to redis:6379. Name or service not known.
+2024-08-25 01:30:20,666 - app - INFO - PoetryBackend startup
+2024-08-25 01:30:22,542 - app - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 639, in _connect
+    raise err
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
+    self._upsert_session(app.permanent_session_lifetime, session, store_id)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+    self.client.set(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
+    return self.execute_command("SET", *pieces, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
+    connection.connect()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.

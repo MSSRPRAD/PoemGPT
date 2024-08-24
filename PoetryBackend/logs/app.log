@@ -1,0 +1,34 @@
+2024-08-25 01:33:20,451 - app - ERROR - Request finalizing failed with an error while handling an error
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 311, in save_session
+    value = self._sign(app, session.sid) if self.use_signer else session.sid
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 214, in _sign
+    signer = self._get_signer(app)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 202, in _get_signer
+    raise KeyError("SECRET_KEY must be set when SESSION_USE_SIGNER=True")
+KeyError: 'SECRET_KEY must be set when SESSION_USE_SIGNER=True'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 311, in save_session
+    value = self._sign(app, session.sid) if self.use_signer else session.sid
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 214, in _sign
+    signer = self._get_signer(app)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 202, in _get_signer
+    raise KeyError("SECRET_KEY must be set when SESSION_USE_SIGNER=True")
+KeyError: 'SECRET_KEY must be set when SESSION_USE_SIGNER=True'
+2024-08-25 01:34:07,868 - app - INFO - PoetryBackend startup
+2024-08-25 01:37:26,080 - app - INFO - PoetryBackend startup
