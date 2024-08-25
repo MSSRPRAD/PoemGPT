@@ -11,6 +11,22 @@ class Config:
     # Base directory (PoetryBackend/)
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
+    # Keys
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
+    # Emotions
+    EMOTIONS = [
+        'Joy',
+        'Sadness',
+        'Anger',
+        'Fear',
+        'Surprise',
+        'Disgust',
+        'Anticipation',
+        'Trust',
+        'Love',
+    ]
+
     # Logging
     LOG_TO_STDOUT = False
     LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
