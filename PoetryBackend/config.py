@@ -15,17 +15,7 @@ class Config:
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
     # Emotions
-    EMOTIONS = [
-        'Joy',
-        'Sadness',
-        'Anger',
-        'Fear',
-        'Surprise',
-        'Disgust',
-        'Anticipation',
-        'Trust',
-        'Love',
-    ]
+    EMOTIONS = ['Positive', 'Negative', 'Neutral', 'Joy', 'Sadness', 'Anger', 'Fear', 'Surprise', 'Disgust', 'Anticipation', 'Trust', 'Love']
 
     # Logging
     LOG_TO_STDOUT = False

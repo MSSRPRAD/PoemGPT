@@ -36,9 +36,8 @@ class OpenAIPoemGenerator(PoemGenerator):
         for chunk in response:
             chunk_message = chunk.choices[0].delta.content
             if chunk_message:
-                elapsed_time = time.time() - start_time
-                print(f"Message received {elapsed_time:.2f} seconds after request: {chunk_message}")
-                yield chunk_message  # Yield each chunk of the poem
-
-        # Optionally yield a final message if needed
+                # elapsed_time = time.time() - start_time
+                # print(f"Message received {elapsed_time:.2f} seconds after request: {chunk_message}")
+                yield chunk_message
+                
         yield "Poem generation completed."

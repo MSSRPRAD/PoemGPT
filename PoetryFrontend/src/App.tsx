@@ -17,11 +17,11 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-      <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-100'}  min-h-screen`}>
-        <Header toggleDarkMode={toggleDarkMode} isDarkMode={darkMode} />
+        <div className={`${darkMode ? 'bg-gray-900' : 'bg-gray-100'} min-h-screen`}>
+          <Header toggleDarkMode={toggleDarkMode} isDarkMode={darkMode} />
           <main className="container mx-auto p-4">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home isDarkMode={darkMode} />} />
               <Route path="/login" element={<Login isDarkMode={darkMode} />} />
               <Route path="/register" element={<Register isDarkMode={darkMode} />} />
               <Route path="/dashboard" element={<UserSection isDarkMode={darkMode} />} />
@@ -34,10 +34,12 @@ const App: React.FC = () => {
   );
 };
 
-const Home: React.FC = () => {
+const Home: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
   return (
     <div className="text-center">
-      <p className="text-lg text-gray-700">This is the home page. Navigate to login or register.</p>
+      <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+        This is the home page. Navigate to login or register.
+      </p>
     </div>
   );
 };
@@ -56,8 +58,8 @@ const UserSection: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
       {user ? (
         <Dashboard isDarkMode={isDarkMode} />
       ) : (
-        <p className={`text-gray-800 ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}>
-          Please login to view your information.
+        <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+          Please login to generate poems.
         </p>
       )}
     </div>

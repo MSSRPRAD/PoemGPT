@@ -11,64 +11,41 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ toggleDarkMode, isDarkMode }) => {
   const { logout, user } = useAuth();
 
+  const headerClass = `bg-gradient-to-r ${isDarkMode ? 'from-gray-800 to-gray-900' : 'from-blue-600 to-blue-700'} p-4 shadow-xl transition duration-600`;
+  const linkClass = `btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-125 transition`;
+
+  const NavLink: React.FC<{ to: string; icon: React.ReactNode; text: string }> = ({ to, icon, text }) => (
+    <li>
+      <Link to={to} className={linkClass}>
+        {icon}
+        {text}
+      </Link>
+    </li>
+  );
+
   return (
-    <header className={`bg-gradient-to-r ${isDarkMode ? 'from-gray-800 to-gray-900' : 'from-blue-600 to-blue-700'} p-4 shadow-md transition duration-300`}>
+    <header className={headerClass}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h1 className={`text-2xl font-semibold ${isDarkMode ? 'text-gray-100' : 'text-white'}`}>
-          Enterprise Solutions
+          Poetry Generator
         </h1>
         <nav className="flex items-center space-x-8">
           <ul className="flex items-center space-x-6">
-            <li>
-              <Link 
-                to="/" 
-                className={`btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-105 transition`}
-              >
-                <FaHome className="mr-2" />
-                Home
-              </Link>
-            </li>
-            {!user ? (
+            <NavLink to="/" icon={<FaHome className="mr-2" />} text="Home" />
+            {user ? (
               <>
+                <NavLink to="/dashboard" icon={<FaUser className="mr-2" />} text="Dashboard" />
                 <li>
-                  <Link 
-                    to="/login" 
-                    className={`btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-105 transition`}
-                  >
-                    <FaSignInAlt className="mr-2" />
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/register" 
-                    className={`btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-105 transition`}
-                  >
-                    <FaUserPlus className="mr-2" />
-                    Register
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link 
-                    to="/dashboard" 
-                    className={`btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-105 transition`}
-                  >
-                    <FaUser className="mr-2" />
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <button 
-                    onClick={logout} 
-                    className={`btn rounded-full px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-white'} hover:shadow-xl hover:scale-105 transition`}
-                  >
+                  <button onClick={logout} className={linkClass}>
                     <FaSignOutAlt className="mr-2" />
                     Logout
                   </button>
                 </li>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login" icon={<FaSignInAlt className="mr-2" />} text="Login" />
+                <NavLink to="/register" icon={<FaUserPlus className="mr-2" />} text="Register" />
               </>
             )}
           </ul>
