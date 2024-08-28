@@ -1,13 +1,13 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from database import db
 
-class Line(db.Model):
-    __tablename__ = 'lines'
+class PoemEmotion(db.Model):
+    __tablename__ = 'poem_emotions'
 
     id = Column(Integer, primary_key=True)
     poem_id = Column(Integer, ForeignKey('poems.id'), nullable=False)
-    line_no = Column(Integer, nullable=False)  # Line number in the poem
     emotion_id = Column(Integer, ForeignKey('emotions.id'), nullable=False)  # Link to Emotion
+    intensity = Column(Integer, nullable=True)  # Intensity of the emotion
 
     def __repr__(self):
-        return f'<Line {self.line_no} of Poem {self.poem_id}>'
+        return f'<PoemEmotion {self.poem_id} - Emotion {self.emotion_id}>'

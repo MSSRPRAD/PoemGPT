@@ -27,6 +27,7 @@ class OpenAIPoemGenerator(PoemGenerator):
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
+                {"role": "system", "content": f"Generate a poem based on the following prompt. Do not include any other text than the poem itself."},
                 {'role': 'user', 'content': prompt}
             ],
             temperature=0,
@@ -36,8 +37,6 @@ class OpenAIPoemGenerator(PoemGenerator):
         for chunk in response:
             chunk_message = chunk.choices[0].delta.content
             if chunk_message:
-                # elapsed_time = time.time() - start_time
-                # print(f"Message received {elapsed_time:.2f} seconds after request: {chunk_message}")
                 yield chunk_message
                 
         yield "Poem generation completed."
