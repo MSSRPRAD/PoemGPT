@@ -39,6 +39,7 @@ def save_poem(user_id, prompt, text, line_emotions: List[LineEmotion], overall_e
             db.session.add(poem_emotion)
 
     db.session.commit()
+    return poem.id
 
 
 

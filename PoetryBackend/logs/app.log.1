@@ -1,111 +1,144 @@
-2024-08-25 01:33:20,451 - app - ERROR - Request finalizing failed with an error while handling an error
+2024-08-28 01:10:41,001 - app - ERROR - Exception on /register/ [POST]
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
-    response = self.process_response(response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
-    self.session_interface.save_session(self, ctx.session, response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 311, in save_session
-    value = self._sign(app, session.sid) if self.use_signer else session.sid
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 214, in _sign
-    signer = self._get_signer(app)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 202, in _get_signer
-    raise KeyError("SECRET_KEY must be set when SESSION_USE_SIGNER=True")
-KeyError: 'SECRET_KEY must be set when SESSION_USE_SIGNER=True'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
-    response = self.process_response(response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
-    self.session_interface.save_session(self, ctx.session, response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 311, in save_session
-    value = self._sign(app, session.sid) if self.use_signer else session.sid
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 214, in _sign
-    signer = self._get_signer(app)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 202, in _get_signer
-    raise KeyError("SECRET_KEY must be set when SESSION_USE_SIGNER=True")
-KeyError: 'SECRET_KEY must be set when SESSION_USE_SIGNER=True'
-2024-08-25 01:34:07,868 - app - INFO - PoetryBackend startup
-2024-08-25 01:37:26,080 - app - INFO - PoetryBackend startup
-2024-08-25 01:41:27,971 - app - INFO - PoetryBackend startup
-2024-08-25 16:54:04,057 - app - INFO - PoetryBackend startup
-2024-08-25 17:22:57,390 - app - INFO - PoetryBackend startup
-2024-08-25 17:34:46,439 - app - INFO - PoetryBackend startup
-2024-08-25 17:36:10,423 - app - INFO - PoetryBackend startup
-2024-08-25 17:36:58,101 - app - INFO - PoetryBackend startup
-2024-08-25 17:38:57,307 - app - INFO - PoetryBackend startup
-2024-08-25 17:39:25,528 - app - INFO - PoetryBackend startup
-2024-08-25 17:51:27,940 - app - INFO - PoetryBackend startup
-2024-08-25 17:53:16,807 - app - INFO - PoetryBackend startup
-2024-08-25 19:49:08,289 - app - INFO - PoetryBackend startup
-2024-08-25 19:51:58,926 - app - INFO - PoetryBackend startup
-2024-08-25 19:54:09,894 - app - INFO - PoetryBackend startup
-2024-08-25 19:55:29,413 - app - INFO - PoetryBackend startup
-2024-08-25 19:57:34,733 - app - INFO - PoetryBackend startup
-2024-08-25 19:58:12,632 - app - INFO - PoetryBackend startup
-2024-08-25 19:58:19,653 - app - INFO - PoetryBackend startup
-2024-08-25 19:59:07,115 - app - INFO - PoetryBackend startup
-2024-08-25 19:59:07,184 - app - INFO - PoetryBackend startup
-2024-08-25 19:59:07,219 - app - INFO - PoetryBackend startup
-2024-08-25 19:59:07,285 - app - INFO - PoetryBackend startup
-2024-08-25 20:08:05,551 - app - INFO - PoetryBackend startup
-2024-08-25 20:08:05,631 - app - INFO - PoetryBackend startup
-2024-08-25 20:08:05,674 - app - INFO - PoetryBackend startup
-2024-08-25 20:08:05,675 - app - INFO - PoetryBackend startup
-2024-08-25 20:17:51,407 - app - INFO - PoetryBackend startup
-2024-08-25 20:17:58,301 - app - INFO - PoetryBackend startup
-2024-08-25 20:18:01,266 - app - INFO - PoetryBackend startup
-2024-08-25 20:25:05,985 - app - INFO - PoetryBackend startup
-2024-08-25 20:26:40,956 - app - INFO - PoetryBackend startup
-2024-08-25 20:27:57,476 - app - INFO - PoetryBackend startup
-2024-08-25 20:29:37,435 - app - INFO - PoetryBackend startup
-2024-08-25 20:30:34,005 - app - INFO - PoetryBackend startup
-2024-08-25 20:30:57,202 - app - INFO - PoetryBackend startup
-2024-08-25 20:35:01,799 - app - INFO - PoetryBackend startup
-2024-08-25 20:35:31,800 - app - INFO - PoetryBackend startup
-2024-08-25 20:36:31,586 - app - INFO - PoetryBackend startup
-2024-08-25 20:37:02,551 - app - INFO - PoetryBackend startup
-2024-08-25 20:37:07,991 - app - INFO - PoetryBackend startup
-2024-08-25 20:37:29,145 - app - INFO - PoetryBackend startup
-2024-08-25 20:38:59,899 - app - INFO - PoetryBackend startup
-2024-08-25 20:39:34,084 - app - INFO - PoetryBackend startup
-2024-08-25 20:40:18,190 - app - INFO - PoetryBackend startup
-2024-08-25 20:40:24,866 - app - INFO - PoetryBackend startup
-2024-08-25 20:43:51,569 - app - INFO - PoetryBackend startup
-2024-08-25 20:44:15,791 - app - INFO - PoetryBackend startup
-2024-08-25 20:50:33,490 - app - INFO - PoetryBackend startup
-2024-08-25 20:58:33,882 - app - INFO - PoetryBackend startup
-2024-08-25 23:08:34,385 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:15,038 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:15,053 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:15,074 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:15,231 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:44,667 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:44,735 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:44,821 - app - INFO - PoetryBackend startup
-2024-08-26 11:57:44,827 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:51,672 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:51,699 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:51,720 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:51,768 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:55,346 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:55,479 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:55,493 - app - INFO - PoetryBackend startup
-2024-08-26 12:01:55,554 - app - INFO - PoetryBackend startup
-2024-08-26 12:02:59,612 - app - INFO - PoetryBackend startup
-2024-08-26 12:02:59,715 - app - INFO - PoetryBackend startup
-2024-08-26 12:02:59,715 - app - INFO - PoetryBackend startup
-2024-08-26 12:02:59,785 - app - INFO - PoetryBackend startup
-2024-08-26 12:08:15,269 - app - INFO - PoetryBackend startup
-2024-08-28 00:45:12,020 - app - INFO - PoetryBackend startup
-2024-08-28 00:45:34,087 - app - INFO - PoetryBackend startup
-2024-08-28 00:52:50,831 - app - INFO - PoetryBackend startup
-2024-08-28 01:09:47,111 - app - INFO - PoetryBackend startup
-2024-08-28 01:10:01,496 - app - INFO - PoetryBackend startup
-2024-08-28 01:10:03,869 - app - INFO - PoetryBackend startup
-2024-08-28 01:10:22,148 - app - INFO - PoetryBackend startup
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/app/controllers/auth.py", line 25, in register
+    if User.query.filter_by(email=data['email']).first():
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2728, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2827, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password_hash AS user_password_hash, user.credits_left AS user_credits_left 
+FROM user 
+WHERE user.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('f20210367@hyderabad.bits-pilani.ac.in', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-08-28 01:12:40,085 - app - INFO - PoetryBackend startup
+2024-08-28 01:13:00,871 - app - INFO - PoetryBackend startup
+2024-08-28 01:19:14,534 - app - INFO - PoetryBackend startup
+2024-08-28 01:21:01,923 - app - INFO - PoetryBackend startup
+2024-08-28 01:21:35,174 - app - INFO - PoetryBackend startup
+2024-08-28 01:52:21,207 - app - INFO - PoetryBackend startup
+2024-08-28 11:55:33,119 - app - INFO - PoetryBackend startup
+2024-08-28 11:57:43,478 - app - INFO - PoetryBackend startup
+2024-08-28 14:06:57,367 - app - INFO - PoetryBackend startup
+2024-08-28 14:08:02,179 - app - INFO - PoetryBackend startup
+2024-08-28 14:09:08,724 - app - INFO - PoetryBackend startup
+2024-08-28 14:10:31,484 - app - INFO - PoetryBackend startup
+2024-08-28 14:10:40,993 - app - INFO - PoetryBackend startup
+2024-08-28 14:14:02,656 - app - INFO - PoetryBackend startup
+2024-08-28 14:14:12,811 - app - INFO - PoetryBackend startup
+2024-08-28 14:14:16,191 - app - INFO - PoetryBackend startup
+2024-08-28 14:49:31,847 - app - INFO - PoetryBackend startup
+2024-08-28 14:49:41,819 - app - INFO - PoetryBackend startup
+2024-08-28 14:52:41,802 - app - INFO - PoetryBackend startup
+2024-08-28 14:53:26,430 - app - INFO - PoetryBackend startup
+2024-08-28 14:53:50,940 - app - INFO - PoetryBackend startup
+2024-08-28 14:54:03,058 - app - INFO - PoetryBackend startup
+2024-08-28 14:55:45,734 - app - INFO - PoetryBackend startup
+2024-08-28 14:57:07,862 - app - INFO - PoetryBackend startup
+2024-08-28 14:59:21,975 - app - INFO - PoetryBackend startup
+2024-08-28 15:06:54,425 - app - INFO - PoetryBackend startup
+2024-08-28 15:12:08,031 - app - INFO - PoetryBackend startup
+2024-08-28 15:12:13,724 - app - INFO - PoetryBackend startup
+2024-08-28 15:13:25,596 - app - INFO - PoetryBackend startup
+2024-08-28 15:14:47,484 - app - INFO - PoetryBackend startup
+2024-08-28 15:15:16,616 - app - INFO - PoetryBackend startup
+2024-08-28 15:16:50,913 - app - INFO - PoetryBackend startup
+2024-08-28 15:19:06,671 - app - INFO - PoetryBackend startup
+2024-08-28 15:23:55,317 - app - INFO - PoetryBackend startup
+2024-08-28 15:24:09,677 - app - INFO - PoetryBackend startup
+2024-08-28 15:24:29,836 - app - INFO - PoetryBackend startup
+2024-08-28 15:24:52,900 - app - INFO - PoetryBackend startup
+2024-08-28 15:33:28,105 - app - INFO - PoetryBackend startup
+2024-08-28 15:36:26,602 - app - INFO - PoetryBackend startup
+2024-08-28 15:38:06,232 - app - INFO - PoetryBackend startup
+2024-08-28 15:46:37,290 - app - INFO - PoetryBackend startup
+2024-08-28 17:58:38,022 - app - INFO - PoetryBackend startup
+2024-08-28 17:58:40,542 - app - INFO - PoetryBackend startup
+2024-08-28 17:58:49,354 - app - INFO - PoetryBackend startup
+2024-08-28 17:58:51,527 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:02,869 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:08,614 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:14,636 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:19,029 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:22,310 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:45,182 - app - INFO - PoetryBackend startup
+2024-08-28 17:59:47,502 - app - INFO - PoetryBackend startup
+2024-08-28 18:00:10,499 - app - INFO - PoetryBackend startup
+2024-08-28 18:00:24,659 - app - INFO - PoetryBackend startup
+2024-08-28 18:01:10,907 - app - INFO - PoetryBackend startup
+2024-08-28 18:02:38,181 - app - INFO - PoetryBackend startup
+2024-08-28 18:03:47,596 - app - INFO - PoetryBackend startup
+2024-08-28 18:04:18,545 - app - INFO - PoetryBackend startup
+2024-08-28 18:08:37,429 - app - INFO - PoetryBackend startup
+2024-08-28 18:08:50,936 - app - INFO - PoetryBackend startup
+2024-08-28 18:09:56,404 - app - INFO - PoetryBackend startup
+2024-08-28 18:14:03,025 - app - INFO - PoetryBackend startup
+2024-08-28 18:14:55,172 - app - INFO - PoetryBackend startup
+2024-08-28 18:15:35,519 - app - INFO - PoetryBackend startup
+2024-08-28 18:16:00,430 - app - INFO - PoetryBackend startup
+2024-08-28 18:16:50,352 - app - INFO - PoetryBackend startup
+2024-08-28 18:19:01,201 - app - INFO - PoetryBackend startup
+2024-08-28 18:22:16,524 - app - INFO - PoetryBackend startup
+2024-08-28 18:26:10,436 - app - INFO - PoetryBackend startup
+2024-08-28 18:27:32,627 - app - INFO - PoetryBackend startup
+2024-08-28 18:28:21,877 - app - INFO - PoetryBackend startup
+2024-08-28 18:30:32,147 - app - INFO - PoetryBackend startup
+2024-08-28 18:31:38,016 - app - INFO - PoetryBackend startup
+2024-08-28 18:31:41,093 - app - INFO - PoetryBackend startup
+2024-08-28 18:32:02,227 - app - INFO - PoetryBackend startup
+2024-08-28 18:32:31,847 - app - INFO - PoetryBackend startup
+2024-08-28 18:36:32,151 - app - INFO - PoetryBackend startup
+2024-08-28 18:37:05,030 - app - INFO - PoetryBackend startup
+2024-08-28 18:37:46,446 - app - INFO - PoetryBackend startup
+2024-08-28 18:39:36,521 - app - INFO - PoetryBackend startup
+2024-08-28 18:41:35,663 - app - INFO - PoetryBackend startup
+2024-08-28 18:44:54,444 - app - INFO - PoetryBackend startup
+2024-08-28 18:45:02,367 - app - INFO - PoetryBackend startup
+2024-08-28 18:50:30,949 - app - INFO - PoetryBackend startup
+2024-08-28 18:53:33,173 - app - INFO - PoetryBackend startup
+2024-08-28 18:55:57,724 - app - INFO - PoetryBackend startup
+2024-08-28 18:56:41,884 - app - INFO - PoetryBackend startup
+2024-08-28 18:57:33,174 - app - INFO - PoetryBackend startup

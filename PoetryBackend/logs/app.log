@@ -1,13 +1,6 @@
-2024-08-28 01:10:41,001 - app - ERROR - Exception on /register/ [POST]
-Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such table: user
-
-The above exception was the direct cause of the following exception:
-
+2024-08-28 19:08:21,482 - app - INFO - PoetryBackend startup
+2024-08-28 19:08:43,916 - app - INFO - PoetryBackend startup
+2024-08-28 19:08:47,783 - app - ERROR - Exception on /user/poems [GET]
 Traceback (most recent call last):
   File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
@@ -19,122 +12,26 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/app/controllers/auth.py", line 25, in register
-    if User.query.filter_by(email=data['email']).first():
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2728, in first
-    return self.limit(1)._iter().first()  # type: ignore
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2827, in _iter
-    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
-    return self._execute_internal(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
-    result = conn.execute(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
-    return meth(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
-    return connection._execute_clauseelement(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
-    return self._exec_single_context(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
-[SQL: SELECT user.id AS user_id, user.name AS user_name, user.email AS user_email, user.password_hash AS user_password_hash, user.credits_left AS user_credits_left 
-FROM user 
-WHERE user.email = ?
- LIMIT ? OFFSET ?]
-[parameters: ('f20210367@hyderabad.bits-pilani.ac.in', 1, 0)]
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
-2024-08-28 01:12:40,085 - app - INFO - PoetryBackend startup
-2024-08-28 01:13:00,871 - app - INFO - PoetryBackend startup
-2024-08-28 01:19:14,534 - app - INFO - PoetryBackend startup
-2024-08-28 01:21:01,923 - app - INFO - PoetryBackend startup
-2024-08-28 01:21:35,174 - app - INFO - PoetryBackend startup
-2024-08-28 01:52:21,207 - app - INFO - PoetryBackend startup
-2024-08-28 11:55:33,119 - app - INFO - PoetryBackend startup
-2024-08-28 11:57:43,478 - app - INFO - PoetryBackend startup
-2024-08-28 14:06:57,367 - app - INFO - PoetryBackend startup
-2024-08-28 14:08:02,179 - app - INFO - PoetryBackend startup
-2024-08-28 14:09:08,724 - app - INFO - PoetryBackend startup
-2024-08-28 14:10:31,484 - app - INFO - PoetryBackend startup
-2024-08-28 14:10:40,993 - app - INFO - PoetryBackend startup
-2024-08-28 14:14:02,656 - app - INFO - PoetryBackend startup
-2024-08-28 14:14:12,811 - app - INFO - PoetryBackend startup
-2024-08-28 14:14:16,191 - app - INFO - PoetryBackend startup
-2024-08-28 14:49:31,847 - app - INFO - PoetryBackend startup
-2024-08-28 14:49:41,819 - app - INFO - PoetryBackend startup
-2024-08-28 14:52:41,802 - app - INFO - PoetryBackend startup
-2024-08-28 14:53:26,430 - app - INFO - PoetryBackend startup
-2024-08-28 14:53:50,940 - app - INFO - PoetryBackend startup
-2024-08-28 14:54:03,058 - app - INFO - PoetryBackend startup
-2024-08-28 14:55:45,734 - app - INFO - PoetryBackend startup
-2024-08-28 14:57:07,862 - app - INFO - PoetryBackend startup
-2024-08-28 14:59:21,975 - app - INFO - PoetryBackend startup
-2024-08-28 15:06:54,425 - app - INFO - PoetryBackend startup
-2024-08-28 15:12:08,031 - app - INFO - PoetryBackend startup
-2024-08-28 15:12:13,724 - app - INFO - PoetryBackend startup
-2024-08-28 15:13:25,596 - app - INFO - PoetryBackend startup
-2024-08-28 15:14:47,484 - app - INFO - PoetryBackend startup
-2024-08-28 15:15:16,616 - app - INFO - PoetryBackend startup
-2024-08-28 15:16:50,913 - app - INFO - PoetryBackend startup
-2024-08-28 15:19:06,671 - app - INFO - PoetryBackend startup
-2024-08-28 15:23:55,317 - app - INFO - PoetryBackend startup
-2024-08-28 15:24:09,677 - app - INFO - PoetryBackend startup
-2024-08-28 15:24:29,836 - app - INFO - PoetryBackend startup
-2024-08-28 15:24:52,900 - app - INFO - PoetryBackend startup
-2024-08-28 15:33:28,105 - app - INFO - PoetryBackend startup
-2024-08-28 15:36:26,602 - app - INFO - PoetryBackend startup
-2024-08-28 15:38:06,232 - app - INFO - PoetryBackend startup
-2024-08-28 15:46:37,290 - app - INFO - PoetryBackend startup
-2024-08-28 17:58:38,022 - app - INFO - PoetryBackend startup
-2024-08-28 17:58:40,542 - app - INFO - PoetryBackend startup
-2024-08-28 17:58:49,354 - app - INFO - PoetryBackend startup
-2024-08-28 17:58:51,527 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:02,869 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:08,614 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:14,636 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:19,029 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:22,310 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:45,182 - app - INFO - PoetryBackend startup
-2024-08-28 17:59:47,502 - app - INFO - PoetryBackend startup
-2024-08-28 18:00:10,499 - app - INFO - PoetryBackend startup
-2024-08-28 18:00:24,659 - app - INFO - PoetryBackend startup
-2024-08-28 18:01:10,907 - app - INFO - PoetryBackend startup
-2024-08-28 18:02:38,181 - app - INFO - PoetryBackend startup
-2024-08-28 18:03:47,596 - app - INFO - PoetryBackend startup
-2024-08-28 18:04:18,545 - app - INFO - PoetryBackend startup
-2024-08-28 18:08:37,429 - app - INFO - PoetryBackend startup
-2024-08-28 18:08:50,936 - app - INFO - PoetryBackend startup
-2024-08-28 18:09:56,404 - app - INFO - PoetryBackend startup
-2024-08-28 18:14:03,025 - app - INFO - PoetryBackend startup
-2024-08-28 18:14:55,172 - app - INFO - PoetryBackend startup
-2024-08-28 18:15:35,519 - app - INFO - PoetryBackend startup
-2024-08-28 18:16:00,430 - app - INFO - PoetryBackend startup
-2024-08-28 18:16:50,352 - app - INFO - PoetryBackend startup
-2024-08-28 18:19:01,201 - app - INFO - PoetryBackend startup
-2024-08-28 18:22:16,524 - app - INFO - PoetryBackend startup
-2024-08-28 18:26:10,436 - app - INFO - PoetryBackend startup
-2024-08-28 18:27:32,627 - app - INFO - PoetryBackend startup
-2024-08-28 18:28:21,877 - app - INFO - PoetryBackend startup
-2024-08-28 18:30:32,147 - app - INFO - PoetryBackend startup
-2024-08-28 18:31:38,016 - app - INFO - PoetryBackend startup
-2024-08-28 18:31:41,093 - app - INFO - PoetryBackend startup
-2024-08-28 18:32:02,227 - app - INFO - PoetryBackend startup
-2024-08-28 18:32:31,847 - app - INFO - PoetryBackend startup
-2024-08-28 18:36:32,151 - app - INFO - PoetryBackend startup
-2024-08-28 18:37:05,030 - app - INFO - PoetryBackend startup
-2024-08-28 18:37:46,446 - app - INFO - PoetryBackend startup
-2024-08-28 18:39:36,521 - app - INFO - PoetryBackend startup
-2024-08-28 18:41:35,663 - app - INFO - PoetryBackend startup
-2024-08-28 18:44:54,444 - app - INFO - PoetryBackend startup
-2024-08-28 18:45:02,367 - app - INFO - PoetryBackend startup
-2024-08-28 18:50:30,949 - app - INFO - PoetryBackend startup
+TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
+2024-08-28 19:08:47,785 - app - ERROR - Exception on /user/poems [GET]
+Traceback (most recent call last):
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
+2024-08-28 19:09:14,450 - app - INFO - PoetryBackend startup
+2024-08-28 19:09:30,621 - app - INFO - PoetryBackend startup
+2024-08-28 19:11:00,351 - app - INFO - PoetryBackend startup
+2024-08-28 19:11:18,332 - app - INFO - PoetryBackend startup
+2024-08-28 19:27:27,836 - app - INFO - PoetryBackend startup
+2024-08-28 19:45:13,009 - app - INFO - PoetryBackend startup
+2024-08-28 20:37:53,694 - app - INFO - PoetryBackend startup
+2024-08-28 20:44:29,892 - app - INFO - PoetryBackend startup
+2024-08-28 20:49:28,954 - app - INFO - PoetryBackend startup

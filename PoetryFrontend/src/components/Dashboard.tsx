@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../AuthContext';
 import { io, Socket } from 'socket.io-client';
+import { api } from '../api';
+import Sidebar from './Sidebar';
+import PoemDisplay from './PoemDisplay';
+import PoemGenerator from './PoemGenerator';
 
 const socket: Socket = io('http://localhost:5000', { withCredentials: true });
 
@@ -8,21 +12,48 @@ export const Dashboard: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => 
   const { user, setUser } = useAuth();
   const [prompt, setPrompt] = useState<string>('');
   const [poem, setPoem] = useState<string>('');
+  const [poemDetails, setPoemDetails] = useState<any | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
+  const [userPoems, setUserPoems] = useState<Array<{ id: number; prompt: string; timestamp: string }>>([]);
+  const [selectedPoemId, setSelectedPoemId] = useState<number | null>(null);
+  const [isAnalysisAvailable, setIsAnalysisAvailable] = useState<boolean>(false);
+
+  const fetchUserPoems = useCallback(async () => {
+    try {
+      const response = await api.getUserPoems();
+      setUserPoems(response.data);
+    } catch (error) {
+      console.error('Error fetching user poems:', error);
+    }
+  }, []);
+
+  const fetchPoemDetails = useCallback(async (poemId: number) => {
+    try {
+      const response = await api.getPoemDetails(poemId);
+      setPoemDetails(response.data);
+      setIsAnalysisAvailable(true);
+      setPoem(''); // Clear the generated poem text
+    } catch (error) {
+      console.error('Error fetching poem details:', error);
+    }
+  }, []);
 
   const handlePoemGeneration = useCallback(() => {
     socket.on('poem_chunk', (data: { chunk: string }) => {
       setPoem(prev => prev + data.chunk);
     });
 
-    socket.on('poem_complete', () => {
+    socket.on('poem_complete', (data: { message: string; poem_id: number }) => {
       setIsGenerating(false);
+      setIsAnalysisAvailable(false);
       if (user) {
         setUser(prevUser => ({
           ...prevUser!,
           credits_left: prevUser!.credits_left - 1
         }));
       }
+      fetchUserPoems();
+      fetchPoemDetails(data.poem_id);
     });
 
     socket.on('error', (data: { error: string }) => {
@@ -35,57 +66,72 @@ export const Dashboard: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => 
       socket.off('poem_complete');
       socket.off('error');
     };
-  }, [user, setUser]);
+  }, [user, setUser, fetchUserPoems, fetchPoemDetails]);
 
   useEffect(() => {
     const cleanup = handlePoemGeneration();
+    fetchUserPoems();
+
     return () => {
       cleanup();
       socket.off('connect_error');
     };
-  }, [handlePoemGeneration]);
+  }, [handlePoemGeneration, fetchUserPoems]);
 
   const handleGeneratePoem = () => {
     if ((user?.credits_left ?? 0) > 0) {
       setPoem('');
       setIsGenerating(true);
+      setIsAnalysisAvailable(false);
+      setPoemDetails(null); // Clear poem details when generating a new poem
+      setSelectedPoemId(null); // Clear selected poem when generating a new poem
       socket.emit('generate_poem', { prompt });
     } else {
       alert("You don't have enough credits to generate a poem.");
     }
   };
 
-  const textColorClass = isDarkMode ? 'text-gray-300' : 'text-gray-800';
-
-  if (!user) {
-    return <p className={textColorClass}>Please login to view your information.</p>;
-  }
+  const handlePoemSelect = (poemId: number) => {
+    setSelectedPoemId(poemId);
+    setPoem(''); // Clear the generated poem text
+    setPoemDetails(null); // Clear poem details before fetching new ones
+    fetchPoemDetails(poemId);
+  };
 
   return (
-    <div className={`p-6 rounded-lg shadow-xl transition-shadow duration-300 ease-in-out ${isDarkMode ? 'shadow-gray-800' : 'shadow-gray-300'}`}>
-      <h2 className={`text-3xl font-bold text-center ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Welcome {user.name}!</h2>
-      <div className={`text-md ${textColorClass} mb-4`}>
-        Credits Remaining: <span className="font-semibold">{user.credits_left}</span>
-      </div>
-      <div className="flex flex-col items-center justify-center mt-4">
-        <textarea
-          className={`border rounded-lg p-2 w-full mb-4 ${isDarkMode ? 'bg-gray-800 text-gray-200' : 'bg-white text-gray-800'}`}
-          rows={3}
-          placeholder="Enter your poem prompt..."
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-        />
-        <button
-          className={`bg-blue-500 text-white font-bold py-2 px-4 rounded ${isDarkMode ? 'hover:bg-blue-600' : 'hover:bg-blue-700'} ${isGenerating ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-80'}`}
-          onClick={handleGeneratePoem}
-          disabled={isGenerating}
-        >
-          {isGenerating ? 'Generating...' : 'Generate Poem'}
-        </button>
-      </div>
-      <div className={`mt-6 p-4 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-        <h3 className={`text-lg font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Generated Poem:</h3>
-        <p className={`whitespace-pre-line ${textColorClass}`}>{poem}</p>
+    <div className="flex">
+      <Sidebar
+        userPoems={userPoems}
+        selectedPoemId={selectedPoemId}
+        onPoemSelect={handlePoemSelect}
+        isDarkMode={isDarkMode}
+      />
+      <div className={`w-3/4 p-6 rounded-lg shadow-xl transition-shadow duration-300 ease-in-out ${isDarkMode ? 'shadow-gray-800' : 'shadow-gray-300'}`}>
+        <div className='flex flex-row items-center justify-between'>
+          <h2 className={`text-3xl font-bold text-center ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Welcome {user?.name}!</h2>
+          <p className={`italic text-center ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Credits Remaining {user?.credits_left}</p>
+        </div>
+        {!selectedPoemId && !isAnalysisAvailable && (
+          <PoemGenerator
+            prompt={prompt}
+            setPrompt={setPrompt}
+            isGenerating={isGenerating}
+            handleGeneratePoem={handleGeneratePoem}
+            isDarkMode={isDarkMode}
+            disabled={false}
+          />
+        )}
+        <div className='flex flex-col items-center justify-center mt-4'>
+          {!isAnalysisAvailable && poem && (
+            <div className={`mt-6 p-4 rounded-lg ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
+              <h3 className={`text-lg font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>Generating Poem:</h3>
+              <p className={`whitespace-pre-line ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`}>{poem}</p>
+            </div>
+          )}
+          {poemDetails && (
+            <PoemDisplay poemDetails={poemDetails} isDarkMode={isDarkMode} />
+          )}
+        </div>
       </div>
     </div>
   );

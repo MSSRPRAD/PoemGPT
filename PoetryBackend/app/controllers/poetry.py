@@ -15,7 +15,7 @@ emotion_analyzer = OpenAIEmotionAnalyzer(model='gpt-4o-mini')
 poem_generator = OpenAIPoemGenerator(model='gpt-4o-mini')
 
 @socketio.on('generate_poem')
-@login_required
+# @login_required
 def handle_generate_poem(data):
     prompt = data.get('prompt')
     if not prompt:
@@ -40,19 +40,22 @@ def handle_generate_poem(data):
     poem_analysis = emotion_analyzer.get_analysis(generated_text)  
 
     # Save the poem, line emotions, and overall emotions
-    save_poem(user.id, prompt, generated_text, line_emotions, overall_emotions.emotions, poem_analysis.analysis)
+    poem_id = save_poem(user.id, prompt, generated_text, line_emotions, overall_emotions.emotions, poem_analysis.analysis)
 
     user.credits_left -= 1
     db.session.commit()
 
-    socketio.emit('poem_complete', {'message': 'Poem generation complete'})
+    socketio.emit('poem_complete', {'message': 'Poem generation complete', 'poem_id': poem_id})
 
 @bp.route('/poem/<int:poem_id>', methods=['GET'])
-@login_required
+# @login_required
 def get_poem_details(poem_id):
     poem = Poem.query.get(poem_id)
     if not poem:
         return jsonify({"error": "Poem not found"}), 404
+    
+    # if poem.user_id != session['user_id']:
+    #     return jsonify({"error": "You are not authorized to view this poem"}), 403
 
     lines = Line.query.filter_by(poem_id=poem.id).all()
     line_emotions = []
@@ -90,6 +93,7 @@ def get_poem_details(poem_id):
 @login_required
 def get_user_poems():
     poems = Poem.query.filter_by(user_id=session['user_id']).all()
+    # poems = Poem.query.filter_by(user_id=user_id).all()
     if not poems:
         return jsonify({"message": "No poems found for this user"}), 404
 

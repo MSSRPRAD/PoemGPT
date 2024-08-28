@@ -51,6 +51,6 @@ def create_app(config_class=Config):
     from app.controllers import test_bp, auth_bp, poetry_bp
     app.register_blueprint(test_bp, url_prefix='/')
     app.register_blueprint(auth_bp, url_prefix='/')
-    app.register_blueprint(poetry_bp, url_prefix='/poetry')
+    app.register_blueprint(poetry_bp, url_prefix='/')
 
     return app

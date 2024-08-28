@@ -27,7 +27,7 @@ class OpenAIPoemGenerator(PoemGenerator):
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
-                {"role": "system", "content": f"Generate a poem based on the following prompt. Do not include any other text than the poem itself."},
+                {"role": "system", "content": f"Generate a poem based on the following prompt. Do not include any other text than the poem itself. The poem should be in the same language as the prompt. Do not say Poem Generation Complete at the end. Do not say anything other than the poem itself. Assume english is the prompt language if you are not sure."},
                 {'role': 'user', 'content': prompt}
             ],
             temperature=0,
@@ -38,5 +38,6 @@ class OpenAIPoemGenerator(PoemGenerator):
             chunk_message = chunk.choices[0].delta.content
             if chunk_message:
                 yield chunk_message
-                
-        yield "Poem generation completed."
+        
+        yield ""
+        # yield "Poem generation completed."
