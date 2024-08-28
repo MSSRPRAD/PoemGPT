@@ -15,7 +15,7 @@ def login_required(f):
     return decorated_function
 
 def get_current_user():
-    user_id = session.get('user_id')
+    user_id = session['user_id']
     return User.query.get(user_id) if user_id else None
 
 @bp.route('/register/', methods=['POST'])
@@ -38,6 +38,7 @@ def register():
 
 @bp.route('/login/', methods=['POST'])
 def login():
+    session.pop("user_id", None)
     data = request.json
     # Check for the presence of email and password
     if not data.get('email') or not data.get('password'):
