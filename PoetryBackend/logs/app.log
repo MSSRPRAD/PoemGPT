@@ -1,45 +1,125 @@
-2024-08-28 19:08:21,482 - app - INFO - PoetryBackend startup
-2024-08-28 19:08:43,916 - app - INFO - PoetryBackend startup
-2024-08-28 19:08:47,783 - app - ERROR - Exception on /user/poems [GET]
+2024-08-28 19:10:13,900 - app - ERROR - Request finalizing failed with an error while handling an error
 Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
-2024-08-28 19:08:47,785 - app - ERROR - Exception on /user/poems [GET]
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 277, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 278, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 639, in _connect
+    raise err
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 627, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
-2024-08-28 19:09:14,450 - app - INFO - PoetryBackend startup
-2024-08-28 19:09:30,621 - app - INFO - PoetryBackend startup
-2024-08-28 19:11:00,351 - app - INFO - PoetryBackend startup
-2024-08-28 19:11:18,332 - app - INFO - PoetryBackend startup
-2024-08-28 19:27:27,836 - app - INFO - PoetryBackend startup
-2024-08-28 19:45:13,009 - app - INFO - PoetryBackend startup
-2024-08-28 20:37:53,694 - app - INFO - PoetryBackend startup
-2024-08-28 20:44:29,892 - app - INFO - PoetryBackend startup
-2024-08-28 20:49:28,954 - app - INFO - PoetryBackend startup
-2024-08-28 22:28:29,534 - app - INFO - PoetryBackend startup
-2024-08-28 22:29:08,416 - app - INFO - PoetryBackend startup
-2024-08-28 22:29:17,645 - app - INFO - PoetryBackend startup
-2024-08-28 22:31:36,221 - app - INFO - PoetryBackend startup
-2024-08-29 00:01:02,445 - app - INFO - PoetryBackend startup
-2024-08-29 00:01:06,481 - app - INFO - PoetryBackend startup
-2024-08-29 00:11:41,769 - app - INFO - PoetryBackend startup
-2024-08-29 00:11:47,149 - app - INFO - PoetryBackend startup
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 883, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/base.py", line 305, in save_session
+    self._upsert_session(app.permanent_session_lifetime, session, store_id)
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+    self.client.set(
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/commands/core.py", line 2333, in set
+    return self.execute_command("SET", *pieces, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/client.py", line 545, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 1074, in get_connection
+    connection.connect()
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 283, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 277, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 278, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 639, in _connect
+    raise err
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 627, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 904, in finalize_request
+    response = self.process_response(response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 1284, in process_response
+    self.session_interface.save_session(self, ctx.session, response)
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/base.py", line 305, in save_session
+    self._upsert_session(app.permanent_session_lifetime, session, store_id)
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+    self.client.set(
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/commands/core.py", line 2333, in set
+    return self.execute_command("SET", *pieces, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/client.py", line 545, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 1074, in get_connection
+    connection.connect()
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 283, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2024-08-28 19:11:17,231 - app - INFO - PoetryBackend startup
+2024-08-28 19:21:43,597 - app - INFO - PoetryBackend startup
+2024-08-28 19:21:43,623 - app - INFO - PoetryBackend startup
+2024-08-28 19:21:43,713 - app - INFO - PoetryBackend startup
+2024-08-28 19:21:43,840 - app - INFO - PoetryBackend startup
+2024-08-28 19:22:41,991 - app - INFO - PoetryBackend startup
+2024-08-28 19:22:41,991 - app - INFO - PoetryBackend startup
+2024-08-28 19:22:41,992 - app - INFO - PoetryBackend startup
+2024-08-28 19:22:41,990 - app - INFO - PoetryBackend startup
+2024-08-28 19:25:43,813 - app - INFO - PoetryBackend startup
+2024-08-28 19:25:44,046 - app - INFO - PoetryBackend startup
+2024-08-28 19:25:44,096 - app - INFO - PoetryBackend startup
+2024-08-28 19:25:44,138 - app - INFO - PoetryBackend startup
+2024-08-28 19:28:01,006 - app - INFO - PoetryBackend startup
+2024-08-29 03:55:11,412 - app - INFO - PoetryBackend startup
+2024-08-29 03:56:22,025 - app - INFO - PoetryBackend startup
+2024-08-29 03:57:28,880 - app - INFO - PoetryBackend startup
+2024-08-29 07:02:15,364 - app - INFO - PoetryBackend startup
+2024-08-29 07:02:40,710 - app - INFO - PoetryBackend startup
+2024-08-29 07:38:41,854 - app - INFO - PoetryBackend startup
+2024-08-29 07:49:06,923 - app - INFO - PoetryBackend startup
+2024-08-29 07:49:36,311 - app - INFO - PoetryBackend startup
+2024-08-29 07:55:28,564 - app - INFO - PoetryBackend startup
+2024-08-29 07:56:52,971 - app - INFO - PoetryBackend startup
+2024-08-29 07:57:44,615 - app - INFO - PoetryBackend startup
+2024-08-29 08:03:31,501 - app - INFO - PoetryBackend startup
+2024-08-29 08:19:31,056 - app - INFO - PoetryBackend startup
+2024-08-29 08:19:37,151 - app - INFO - PoetryBackend startup
+2024-08-29 09:20:02,731 - app - INFO - PoetryBackend startup
+2024-08-29 09:20:09,384 - app - INFO - PoetryBackend startup
+2024-08-29 09:21:35,902 - app - INFO - PoetryBackend startup
+2024-08-29 10:22:17,121 - app - INFO - PoetryBackend startup
+2024-08-29 10:22:39,928 - app - INFO - PoetryBackend startup
+2024-08-29 10:23:16,102 - app - INFO - PoetryBackend startup
+2024-08-29 10:23:56,326 - app - INFO - PoetryBackend startup
+2024-08-29 10:24:37,606 - app - INFO - PoetryBackend startup
+2024-08-29 10:26:54,623 - app - INFO - PoetryBackend startup

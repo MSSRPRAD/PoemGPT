@@ -1,113 +1,95 @@
-2024-08-25 01:28:45,688 - app - ERROR - Request finalizing failed with an error while handling an error
-Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
-    sock = self.retry.call_with_retry(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
-    return do()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
-    lambda: self._connect(), lambda error: self.disconnect(error)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 607, in _connect
-    for res in socket.getaddrinfo(
-  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
-    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
-socket.gaierror: [Errno -2] Name or service not known
-
-During handling of the above exception, another exception occurred:
-
+2024-08-28 19:08:21,482 - app - INFO - PoetryBackend startup
+2024-08-28 19:08:43,916 - app - INFO - PoetryBackend startup
+2024-08-28 19:08:47,783 - app - ERROR - Exception on /user/poems [GET]
 Traceback (most recent call last):
   File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
-    return self.finalize_request(rv)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
-    response = self.process_response(response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
-    self.session_interface.save_session(self, ctx.session, response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
-    self._upsert_session(app.permanent_session_lifetime, session, store_id)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
-    self.client.set(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
-    return self.execute_command("SET", *pieces, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
-    conn = self.connection or pool.get_connection(command_name, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
-    connection.connect()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error -2 connecting to redis:6379. Name or service not known.
-
-During handling of the above exception, another exception occurred:
-
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
+2024-08-28 19:08:47,785 - app - ERROR - Exception on /user/poems [GET]
 Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_cors/extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+TypeError: get_user_poems() missing 1 required positional argument: 'user_id'
+2024-08-28 19:09:14,450 - app - INFO - PoetryBackend startup
+2024-08-28 19:09:30,621 - app - INFO - PoetryBackend startup
+2024-08-28 19:11:00,351 - app - INFO - PoetryBackend startup
+2024-08-28 19:11:18,332 - app - INFO - PoetryBackend startup
+2024-08-28 19:27:27,836 - app - INFO - PoetryBackend startup
+2024-08-28 19:45:13,009 - app - INFO - PoetryBackend startup
+2024-08-28 20:37:53,694 - app - INFO - PoetryBackend startup
+2024-08-28 20:44:29,892 - app - INFO - PoetryBackend startup
+2024-08-28 20:49:28,954 - app - INFO - PoetryBackend startup
+2024-08-28 22:28:29,534 - app - INFO - PoetryBackend startup
+2024-08-28 22:29:08,416 - app - INFO - PoetryBackend startup
+2024-08-28 22:29:17,645 - app - INFO - PoetryBackend startup
+2024-08-28 22:31:36,221 - app - INFO - PoetryBackend startup
+2024-08-29 00:01:02,445 - app - INFO - PoetryBackend startup
+2024-08-29 00:01:06,481 - app - INFO - PoetryBackend startup
+2024-08-29 00:11:41,769 - app - INFO - PoetryBackend startup
+2024-08-29 00:11:47,149 - app - INFO - PoetryBackend startup
+2024-08-28 19:02:30,823 - app - INFO - PoetryBackend startup
+2024-08-28 19:02:51,652 - app - INFO - PoetryBackend startup
+2024-08-28 19:05:02,050 - app - INFO - PoetryBackend startup
+2024-08-28 19:05:54,018 - app - INFO - PoetryBackend startup
+2024-08-28 19:08:39,593 - app - ERROR - Exception on /login/ [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 277, in connect
     sock = self.retry.call_with_retry(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/retry.py", line 62, in call_with_retry
     return do()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
+           ^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 278, in <lambda>
     lambda: self._connect(), lambda error: self.disconnect(error)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 607, in _connect
-    for res in socket.getaddrinfo(
-  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
-    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
-socket.gaierror: [Errno -2] Name or service not known
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
-    response = self.process_response(response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
-    self.session_interface.save_session(self, ctx.session, response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
-    self._upsert_session(app.permanent_session_lifetime, session, store_id)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
-    self.client.set(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
-    return self.execute_command("SET", *pieces, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
-    conn = self.connection or pool.get_connection(command_name, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
-    connection.connect()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error -2 connecting to redis:6379. Name or service not known.
-2024-08-25 01:30:20,666 - app - INFO - PoetryBackend startup
-2024-08-25 01:30:22,542 - app - ERROR - Exception on /login [POST]
-Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 277, in connect
-    sock = self.retry.call_with_retry(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/retry.py", line 62, in call_with_retry
-    return do()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 278, in <lambda>
-    lambda: self._connect(), lambda error: self.disconnect(error)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 639, in _connect
+            ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 639, in _connect
     raise err
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 627, in _connect
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 627, in _connect
     sock.connect(socket_address)
 ConnectionRefusedError: [Errno 111] Connection refused
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 883, in full_dispatch_request
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 883, in full_dispatch_request
     return self.finalize_request(rv)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 904, in finalize_request
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 904, in finalize_request
     response = self.process_response(response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask/app.py", line 1284, in process_response
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask/app.py", line 1284, in process_response
     self.session_interface.save_session(self, ctx.session, response)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/base.py", line 305, in save_session
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/base.py", line 305, in save_session
     self._upsert_session(app.permanent_session_lifetime, session, store_id)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/flask_session/redis/redis.py", line 81, in _upsert_session
     self.client.set(
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/commands/core.py", line 2333, in set
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/commands/core.py", line 2333, in set
     return self.execute_command("SET", *pieces, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/client.py", line 545, in execute_command
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/client.py", line 545, in execute_command
     conn = self.connection or pool.get_connection(command_name, **options)
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 1074, in get_connection
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 1074, in get_connection
     connection.connect()
-  File "/home/malladipradyumna/Desktop/Vurbalize/PoetryBackend/venv/lib/python3.10/site-packages/redis/connection.py", line 283, in connect
+  File "/home/ubuntu/shashank/poemgpt/PoetryBackend/venv/lib/python3.12/site-packages/redis/connection.py", line 283, in connect
     raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error 111 connecting to localhost:6379. Connection refused.
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.

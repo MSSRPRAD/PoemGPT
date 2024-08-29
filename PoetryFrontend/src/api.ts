@@ -1,23 +1,49 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
+export const BASE_URL = 'http://54.66.194.77:5000';
 
 export const api = {
-  login: (email: string, password: string) => 
-    axios.post('http://localhost:5000/login/', { email, password }),
-  
+  login: async (email: string, password: string) => {
+    const response = await axios.post(`${BASE_URL}/login/`, { email, password });
+    
+    // Store the cookie in local storage
+    const cookie = response.headers['set-cookie'];
+    console.log(cookie);
+    // if (cookie && Array.isArray(cookie)) {
+    //   localStorage.setItem('auth_cookie', cookie[0]);
+    // }
+    
+    return response;
+  },
+
   register: (name: string, email: string, password: string) => 
-    axios.post('http://localhost:5000/register/', { name, email, password }),
+    axios.post(`${BASE_URL}/register/`, { name, email, password }),
   
-  logout: () => axios.post('http://localhost:5000/logout/'),
-  
-  getUser: () => axios.get('http://localhost:5000/user/'),
+  logout: () => {
+    // Clear the cookie from local storage on logout
+    localStorage.removeItem('auth_cookie');
+    return axios.post(`${BASE_URL}/logout/`);
+  },
 
-  // New method to get poem details by ID
-  getPoemDetails: (poemId: number) => 
-    axios.get(`http://localhost:5000/poem/${poemId}`),
+  getUser: () => {
+    const cookie = localStorage.getItem('auth_cookie');
+    return axios.get(`${BASE_URL}/user/`, {
+      headers: cookie ? { Cookie: cookie } : undefined
+    });
+  },
 
-  // New method to get all prompts and timestamps for a user
-  getUserPoems: () => 
-    axios.get(`http://localhost:5000/user/poems`),
+  getPoemDetails: (poemId: number) => {
+    const cookie = localStorage.getItem('auth_cookie');
+    return axios.get(`${BASE_URL}/poem/${poemId}`, {
+      headers: cookie ? { Cookie: cookie } : undefined
+    });
+  },
+
+  getUserPoems: () => {
+    const cookie = localStorage.getItem('auth_cookie');
+    return axios.get(`${BASE_URL}/user/poems`, {
+      headers: cookie ? { Cookie: cookie } : undefined
+    });
+  },
 };

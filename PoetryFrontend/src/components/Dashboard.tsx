@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../AuthContext';
 import { io, Socket } from 'socket.io-client';
-import { api } from '../api';
+import { api, BASE_URL } from '../api';
 import Sidebar from './Sidebar';
 import PoemDisplay from './PoemDisplay';
 import PoemGenerator from './PoemGenerator';
 
-const socket: Socket = io('http://localhost:5000', { withCredentials: true });
+const socket: Socket = io(BASE_URL, { withCredentials: true });
 
 export const Dashboard: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
   const { user, setUser } = useAuth();

@@ -33,10 +33,10 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # Session
-    SESSION_TYPE = 'redis'
+    SESSION_TYPE = 'filesystem'
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
-    SESSION_REDIS = redis.from_url('redis://127.0.0.1:6379')
+    # SESSION_REDIS = redis.from_url('redis://127.0.0.1:6379')
     PERMANENT_SESSION_LIFETIME = timedelta(minutes=30)
 
     @classmethod
