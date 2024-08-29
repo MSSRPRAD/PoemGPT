@@ -5,7 +5,7 @@ from app.services.emotion_analyzer import EmotionAnalyzer, EmotionDetail, LineEm
 
 from database import db
 from config import Config
-from app.models import Poem, Line, Emotion, PoemEmotion
+from app.models import Poem, Line, Emotion, PoemEmotion, User
 
 def populate_emotions():
     for emotion_name in Config.EMOTIONS:
@@ -42,6 +42,8 @@ def save_poem(user_id, prompt, text, line_emotions: List[LineEmotion], overall_e
     return poem.id
 
 
+def get_user_by_id(user_id):
+    return User.query.filter_by(id=user_id).first()
 
 def get_poems_by_user(user_id):
     return Poem.query.filter_by(user_id=user_id).all()

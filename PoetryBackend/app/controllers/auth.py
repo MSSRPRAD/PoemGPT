@@ -3,6 +3,7 @@ from functools import wraps
 
 from database import db
 from app.models.user import User
+from app.utils.db import get_user_by_id
 
 bp = Blueprint('auth', __name__)
 
@@ -14,9 +15,9 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-def get_current_user():
-    user_id = session['user_id']
-    return User.query.get(user_id) if user_id else None
+# def get_current_user():
+#     user_id = session['user_id']
+#     return User.query.get(user_id) if user_id else None
 
 @bp.route('/register/', methods=['POST'])
 def register():
@@ -52,7 +53,12 @@ def login():
     # Check password validity
     if user and user.check_password(data['password']):
         session['user_id'] = user.id
-        return jsonify({"message": "Logged in successfully"}), 200
+        return jsonify({
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "credits_left": user.credits_left
+        }), 200
 
     return jsonify({"error": "Invalid password"}), 401  # Unauthorized
 
@@ -62,14 +68,15 @@ def logout():
     session.pop('user_id', None)
     return jsonify({"message": "Logged out successfully"}), 200
 
-@bp.route('/user/', methods=['GET'])
-@login_required
-def get_user():
-    user = get_current_user()
-    if user is None:
-        return jsonify({"error": "User not found"}), 404  # Not found
-    return jsonify({
-        "name": user.name,
-        "email": user.email,
-        "credits_left": user.credits_left
-    }), 200
+# @bp.route('/user/<int:user_id>', methods=['GET'])
+# @login_required
+# def get_user(user_id):
+#     # user = get_current_user()
+#     user = get_user_by_id(user_id)
+#     if user is None:
+#         return jsonify({"error": "User not found"}), 404  # Not found
+#     return jsonify({
+#         "name": user.name,
+#         "email": user.email,
+#         "credits_left": user.credits_left
+#     }), 200

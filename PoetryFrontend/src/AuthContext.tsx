@@ -18,9 +18,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (email: string, password: string) => {
     const response = await api.login(email, password);
     if (response.status === 200) {
-      const userResponse = await api.getUser();
-      console.log('Fetched user data:', userResponse.data);
-      setUser(userResponse.data);
+      console.log('Fetched user data:', response.data);
+      setUser(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
     }
   };
 

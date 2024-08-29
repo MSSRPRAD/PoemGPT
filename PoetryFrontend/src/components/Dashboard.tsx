@@ -19,8 +19,15 @@ export const Dashboard: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => 
   const [isAnalysisAvailable, setIsAnalysisAvailable] = useState<boolean>(false);
 
   const fetchUserPoems = useCallback(async () => {
+    console.log("Fetching user poems");
+    console.log(user?.id);
+    JSON.parse(localStorage.getItem('user') ?? '{}')
+    if (user === undefined) {
+      setUser(JSON.parse(localStorage.getItem('user') ?? '{}'));
+    }
+    
     try {
-      const response = await api.getUserPoems();
+      const response = await api.getUserPoems(user?.id ?? 1);
       setUserPoems(response.data);
     } catch (error) {
       console.error('Error fetching user poems:', error);
@@ -85,7 +92,7 @@ export const Dashboard: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => 
       setIsAnalysisAvailable(false);
       setPoemDetails(null); // Clear poem details when generating a new poem
       setSelectedPoemId(null); // Clear selected poem when generating a new poem
-      socket.emit('generate_poem', { prompt });
+      socket.emit('generate_poem', { 'prompt': prompt, 'user_id': user?.id ?? 1 });
     } else {
       alert("You don't have enough credits to generate a poem.");
     }

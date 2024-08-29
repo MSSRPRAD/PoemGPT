@@ -1,11 +1,10 @@
 from flask import Blueprint, request, jsonify, session
 from flask_socketio import emit
-
 from app.services.openai_poem_generator import OpenAIPoemGenerator
-from app.utils.db import save_poem
+from app.utils.db import save_poem, get_user_by_id
 from app.utils import generate_poem
 from app.services.openai_emotional_analyzer import OpenAIEmotionAnalyzer
-from app.controllers.auth import get_current_user, login_required
+from app.controllers.auth import login_required
 from app import socketio
 from database import db
 from app.models import Poem, Line, Emotion, PoemEmotion
@@ -15,22 +14,22 @@ emotion_analyzer = OpenAIEmotionAnalyzer(model='gpt-4o-mini')
 poem_generator = OpenAIPoemGenerator(model='gpt-4o-mini')
 
 @socketio.on('generate_poem')
-# @login_required
 def handle_generate_poem(data):
     prompt = data.get('prompt')
+    user_id = data.get('user_id')
     if not prompt:
-        emit('error', {"error": "Prompt is required"})
+        emit('error', {"error": "Prompt is required"}, room=request.sid)
         return
     
-    user = get_current_user()
+    user = get_user_by_id(user_id)
     if user.credits_left <= 0:
-        emit('error', {"error": "Not enough credits to generate a poem."})
+        emit('error', {"error": "Not enough credits to generate a poem."}, room=request.sid)
         return
     
     generated_text = ""
     for chunk in generate_poem(prompt, poem_generator):
         generated_text += chunk
-        socketio.emit('poem_chunk', {'chunk': chunk})
+        socketio.emit('poem_chunk', {'chunk': chunk}, room=request.sid)
     
     # Analyze emotions line by line
     line_emotions = emotion_analyzer.analyze_lines(generated_text)  
@@ -45,18 +44,14 @@ def handle_generate_poem(data):
     user.credits_left -= 1
     db.session.commit()
 
-    socketio.emit('poem_complete', {'message': 'Poem generation complete', 'poem_id': poem_id})
+    socketio.emit('poem_complete', {'message': 'Poem generation complete', 'poem_id': poem_id}, room=request.sid)
 
 @bp.route('/poem/<int:poem_id>', methods=['GET'])
-# @login_required
 def get_poem_details(poem_id):
     poem = Poem.query.get(poem_id)
     if not poem:
         return jsonify({"error": "Poem not found"}), 404
     
-    # if poem.user_id != session['user_id']:
-    #     return jsonify({"error": "You are not authorized to view this poem"}), 403
-
     lines = Line.query.filter_by(poem_id=poem.id).all()
     line_emotions = []
     for line in lines:
@@ -89,11 +84,10 @@ def get_poem_details(poem_id):
 
     return jsonify(response)
 
-@bp.route('/user/poems', methods=['GET'])
+@bp.route('/user/poems/<int:user_id>', methods=['GET'])
 @login_required
-def get_user_poems():
-    poems = Poem.query.filter_by(user_id=session['user_id']).all()
-    # poems = Poem.query.filter_by(user_id=user_id).all()
+def get_user_poems(user_id):
+    poems = Poem.query.filter_by(user_id=user_id).all()
     if not poems:
         return jsonify({"message": "No poems found for this user"}), 404
 

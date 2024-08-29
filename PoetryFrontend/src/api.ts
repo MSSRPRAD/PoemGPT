@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-export const BASE_URL = 'http://54.66.194.77:5000';
+export const BASE_URL = 'http://localhost:5000';
 
 export const api = {
   login: async (email: string, password: string) => {
@@ -40,10 +40,10 @@ export const api = {
     });
   },
 
-  getUserPoems: () => {
-    const cookie = localStorage.getItem('auth_cookie');
-    return axios.get(`${BASE_URL}/user/poems`, {
-      headers: cookie ? { Cookie: cookie } : undefined
+  getUserPoems: (user_id: number) => {
+    // const cookie = localStorage.getItem('auth_cookie');
+    return axios.get(`${BASE_URL}/user/poems/${user_id}`, {
+      // headers: cookie ? { Cookie: cookie } : undefined
     });
   },
 };
